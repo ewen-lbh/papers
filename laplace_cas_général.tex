@@ -1,0 +1,114 @@
+% Basic stuff
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage[bookmarks, hidelinks, unicode]{hyperref}
+\usepackage[]{amsmath,amssymb}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{lmodern}
+\usepackage{soul}
+\usepackage{float}
+
+% Packages configuration
+\usetikzlibrary{shapes.arrows, angles, quotes}
+\renewcommand{\arraystretch}{1.4}
+\restylefloat{table}
+
+% Shortcut commands
+\newcommand{\im}{\text{Im}\,}
+\newcommand{\re}{\text{Re}\,}
+\newcommand{\img}{\text{Img}\,}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\renewcommand{\U}{{\mathbb U}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cD}{{\mathcal D}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cotan}{\operatorname{cotan}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\Aff}{\text{Aff}}
+\newcommand{\twoRows}[1]{\multirow{2}{*}{#1}}
+\newcommand{\threeRows}[1]{\multirow{3}{*}{#1}}
+\newcommand{\twoCols}[1]{\multicolumn{2}{c|}{#1}}
+\newcommand{\threeCols}[1]{\multicolumn{3}{|c|}{#1}}
+\newcommand{\twoColsNB}[1]{\multicolumn{2}{c}{#1}}
+\newcommand{\goesto}[2]{\xrightarrow[#1\:\to\:#2]{}}
+\newcommand{\liminfty}{\lim_{x\to+\infty}}
+\newcommand{\limminfty}{\lim_{x\to-\infty}}
+\newcommand{\limzero}{\lim_{x\to0}}
+\newcommand{\const}{\text{cste}}
+\newcommand{\et}{\:\text{et}\:}
+\newcommand{\ou}{\:\text{ou}\:}
+\newcommand{\placeholder}{\diamond}
+\newcommand{\mediateur}{\:\text{med}\:}
+\newcommand{\milieu}{\:\text{mil}\:}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\point}[2]{(#1;\;#2)}
+\newcommand{\spacepoint}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\ch}{\operatorname{ch}}
+\renewcommand{\th}{\operatorname{th}}
+\newcommand{\id}{\operatorname{id}}
+\renewcommand{\cong}{\equiv}
+\newcommand{\converges}[2]{\xrightarrow[{#1\to #2}]{}}
+\newcommand{\convergedby}[2]{\xleftarrow[{#1\to #2}]{}}
+
+% Document
+\begin{document}
+
+\section*{Dérivées et primitives de Laplace, cas général}
+
+
+Soient $I \in \mathcal P(\R)$, $n \in \Z$ et $f \in \mathcal D^{n}(I, \R)$
+
+\begin{align}
+	\mathcal L [ f^{(n)} ] = p^{n}F(p)-\sum_{k=0}^{|n|-1} p^{n-k} f^{(k)}(0)
+\end{align}
+
+En notant, pour tout $n \in \Z\setminus\N$ et avec $A$, $B$ des ensembles:
+
+\begin{enumerate}
+	\item $\mathcal D^{n}(A, B)$ l'ensemble des fonctions de $A$ dans $B$ $n$ fois primitivables
+	\item Pour tout $f \in \mathcal D^{n}(A, B)$, $f^{(n)}$ la fonction $n$-ième primitive de $f$ 
+\end{enumerate}
+
+
+\subsection*{Démonstration}
+Montrons que le théorème précédent est vrai pour tout $n \in \N$ par récurrence.
+
+\subsubsection*{Initialisation ($n = 0$)}
+On a: 
+
+\begin{align*}
+	\mathcal L[f] =\mathcal L[f^{(0)}] &= p^0 F(p) - \sum_{k=0}^{|0|-1} p^{n-k} f^{(k)}(0) \\
+						&= 1 \cdot F(p) - \sum_{\emptyset}^{} p^{n-k} f^{(k)}(0) \\
+						&= F(p) \\
+\end{align*}
+
+\subsubsection*{Hérédité}
+Soit $n \in \N$. Supposons (1).
+D'après François Couprie, on sait que:
+
+\begin{align}
+	\mathcal L[f'] = \mathcal L[f^{(1)}] &= pF(p) - f(0)
+\end{align}
+
+On a donc
+
+\begin{align*}
+	\mathcal L[f^{(n+1)}] = \mathcal L[f^{(n)}'] &= pF^{(n)}(p) - f(0) \qquad \text{D'après (2)} \\
+												 &= p\left( p^{n}F(p)-\sum_{k=0}^{|n|-1} p^{n-k} f^{(k)}(0)
+												 \right) - f(0) \qquad \text{Par hypothèse de récurrence}\\
+												 &= p^{n+1}F(p)-p \sum_{k=0}^{n-1} p^{n-k} f^{(k)}(0) - p^0f(0) \qquad \text{Car $n > 0$}\\
+												 &= p^{n+1}F(p) - \sum_{k=0}^{n-1} p^{n-k+1} f^{(k)}(0) - \sum_{k=n}^{n} p^{n-k+1} f^{(k)}(0) \\
+												 &= p^{n+1}F(p) -  \\
+\end{align*}
+
+\begin{flushright}
+	{\footnotesize Ewen Le Bihan, MPSI Daudet, 2020}
+\end{flushright}
+\end{document}

@@ -1,0 +1,76 @@
+% Basic stuff
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage[bookmarks, hidelinks, unicode]{hyperref}
+\usepackage[]{amsmath,amssymb}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{lmodern}
+\usepackage{soul}
+\usepackage{float}
+
+% Packages configuration
+\usetikzlibrary{shapes.arrows, angles, quotes}
+\renewcommand{\arraystretch}{1.4}
+\restylefloat{table}
+
+% Shortcut commands
+\newcommand{\im}{\text{Im}\,}
+\newcommand{\re}{\text{Re}\,}
+\newcommand{\img}{\text{Img}\,}
+\newcommand{\R}{{\mathbb R}}
+\renewcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\renewcommand{\U}{{\mathbb U}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\cD}{{\mathcal D}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cotan}{\operatorname{cotan}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\Aff}{\text{Aff}}
+\newcommand{\twoRows}[1]{\multirow{2}{*}{#1}}
+\newcommand{\threeRows}[1]{\multirow{3}{*}{#1}}
+\newcommand{\twoCols}[1]{\multicolumn{2}{c|}{#1}}
+\newcommand{\threeCols}[1]{\multicolumn{3}{|c|}{#1}}
+\newcommand{\twoColsNB}[1]{\multicolumn{2}{c}{#1}}
+\newcommand{\goesto}[2]{\xrightarrow[#1\:\to\:#2]{}}
+\newcommand{\liminfty}{\lim_{x\to+\infty}}
+\newcommand{\limminfty}{\lim_{x\to-\infty}}
+\newcommand{\limzero}{\lim_{x\to0}}
+\newcommand{\const}{\text{cste}}
+\newcommand{\et}{\:\text{et}\:}
+\newcommand{\ou}{\:\text{ou}\:}
+\newcommand{\placeholder}{\diamond}
+\newcommand{\mediateur}{\:\text{med}\:}
+\newcommand{\milieu}{\:\text{mil}\:}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\point}[2]{(#1;\;#2)}
+\newcommand{\spacepoint}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\ch}{\operatorname{ch}}
+\renewcommand{\th}{\operatorname{th}}
+\newcommand{\id}{\operatorname{id}}
+\renewcommand{\cong}{\equiv}
+\newcommand{\converges}[2]{\xrightarrow[{#1\to #2}]{}}
+\newcommand{\convergedby}[2]{\xleftarrow[{#1\to #2}]{}}
+
+% Document
+\begin{document}
+
+\section*{Théorème fondamental des relations}
+ 
+Soit $E$ l'univers du discours.
+Soit $A,\ B \in P(E)$ et $\mathcal R$ une relation sur $A$ et $B$.
+
+\[
+	\mathcal{R} \in \mathcal{F}(A \times B,\ \mathbb{B})
+\] 
+
+\begin{flushright}
+	{\footnotesize Ewen Le Bihan, MPSI Daudet, 2020}
+\end{flushright}
+
+\end{document}
