@@ -20,6 +20,7 @@
 \newcommand{\re}{\text{Re}\,}
 \newcommand{\img}{\text{Img}\,}
 \newcommand{\R}{{\mathbb R}}
+\newcommand{\Y}{{\mathbb Y}}
 \renewcommand{\C}{{\mathbb C}}
 \newcommand{\N}{{\mathbb N}}
 \newcommand{\Z}{{\mathbb Z}}
@@ -105,32 +106,156 @@
 }
 
 \newcommand{\bijectivefunctions}{%
-	\begin{tikzpicture}[scale=1.5]%
-		\draw (0ex, 0ex) arc (-90:0:1ex);%
-		\draw (1.5ex, 0ex) arc (-90:0:-1ex);%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0.5ex) -- (0.75ex,0.5ex);
+		\draw (-0.75ex,0) -- (0.75ex,0);
+		\draw (-0.75ex,-0.5ex) -- (0.75ex,-0.5ex);
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\injectivefunctions}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0) -- (0.75ex,0);
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\surjectivefunctions}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0.5ex) -- (0.75ex,0);
+		\draw (-0.75ex,-0.5ex) -- (0.75ex,0);
 	\end{tikzpicture}\,%
 }
 % Document
+
+\author{Ewen Le Bihan}
+\date{2020-12-29}
+\title{Fonctions à ensembles fonctionnels}
 \begin{document}
+\maketitle
+\begin{abstract}
+	La notation $\cD(A, B)$ désignant l'ensembles des fonctions dérivables sur $A$ de type $A\to B$ est assez commune, et facilement définissable de manière formelle, ainsi que sa généralisation, $\cD^n$, ou son homologue pour les fonctions continues, $\cC$. Mais il y a bien un lien entre ces trois notations: ce sont des \emph{fonctions à valeurs d'ensembles ne contenant que des fonctions du type correspondants aux deux arguments passés à la fonction}, ou, plus succintement, pour tous ensembles $A$ et $B$, $\cD(A, B) \in \mathcal P(\cF(A, B))$.
+	
+%\footnote{On remarque aussi que la notation $\cF$ est elle-même une fonction à ensembles fonctionnels}
 
-\begin{titlepage}
-\begin{center}
-\textit{\today}
-\vfill
-\textbf{\LARGE{Ensemble fonctionnels}}\\
-\vfill
-\large{Ewen Le Bihan\\MPSI -- Daudet}
-\end{center}
-\end{titlepage}
+	Dans cet article est exploré cette “classe” d'objets particuliers. On défini pour tout le reste de l'article l'abbréviation {\bf FEF}, signifiant “Fonctions à valeurs d'ensembles fonctionnels”. On note dans la suite de tout l'article $A$ et $B$ deux ensembles quelconques, $:=$ l'égalité par définition et $\text{univers}$ l'unique ensemble tel que pour tout ensemble $A$, $A \subset \text{univers}$.
+\end{abstract}
 
-\newpage
-\tableofcontents
+\section{Définitions}
 
-\newpage
+\subsection{Définition de l'ensemble des FEF}
+\paragraph{}
 
-Soient $A$ et $B$ des ensembles.
+On définit dès lors un nouvel ensemble $\Y$%\footnote{$\Y$ est préféré à $\mathbb F$ car $\mathbb F$ désigne déjà l'ensemble des champs, et $\Y$ n'a aucun usage répertorité sur Wikipédia.
 
-\section{Monotonie}
+\[
+	\Y &:= \cF(A \times B,\ \mathcal P(\cF(A, B))
+\] 
+Où:
+
+\begin{itemize}
+	\item $\cF$ désigne l'ensemble des fonctions de type $A\to B$. Pour la définition formelle de $\cF$, cf. \ref{formal_def_F}.
+	\item $\mathcal P(A)$ désigne une partie de $A$
+\end{itemize}
+
+\paragraph{}
+On a bien:
+
+\begin{itemize}
+	\item $\cF \in \Y$
+	\item $\cC \in \Y$
+	\item $\cD \in \Y$
+\end{itemize}
+
+
+
+\subsection{Un conflit de notations: l'exposant}
+
+Cette perspective de $\cD^n$ ou $\cC^n$ comme de simples fonctions soulève un conflit assez désagréable de notation: si $\cD$ est une fonction, on devrait avoir:
+
+\[
+	\forall n \in \N, \cD^n = \bigcirc_{i=0}^n \cD
+\] 
+
+Ce qui n'est évidemment pas le cas.
+
+Dès lors, par souci de clarté, contrairement à la notation traditionnelle, {\bf $\cD_n$ désignera l'ensemble des fonctions $n$ fois dérivables, et $\cD^n$ la fonction $\cD$ $n$ fois composée avec elle-même}. On fera la même entorse aux notations classiques pour $\cC$.
+
+\subsection{Définition formelle de $\cF$}
+\label{formal_def_F}
+
+L'ensemble $\cF$ est particulier: \emph{il est nécéssaire que $\cF$ soit définit pour définir $\Y$ même}.
+
+De ce fait, la définition de $\cF$ nécéssite une définition formelle des applications.
+On restera au stade d'une définition semi-formelle:
+
+\[
+	\cF := (A, B) \mapsto \{ f \in \text{univers},\ f:A\to B\} 
+\]
+
+\subsection{Extension des opérateurs ensemblistes aux FEF}
+
+On a, pour tout élément $F \in \Y$:
+
+\begin{enumerate}
+	\item $F$ est d'arité 2 (i.e. $F$ prend deux arguments)
+	\item $F$ est à valeur d'ensembles
+\end{enumerate}
+
+On en déduit de \emph{tout élément de $\Y$ possède la même arité et renvoie des valeurs de nature ensembliste}.
+
+Il est donc possible d'étendre canoniquement et sans ambiguïté les opérateurs ensemblistes aux FEF.
+On a donc:
+
+\begin{align}
+	\forall \square \in \{\cup, \cap, \setminus, \Delta \},\ \forall (F, G) \in \Y^2,\ F \square G &:= (A, B)\mapsto F(A, B) \square G(A, B) \\
+	\forall F\in \Y,\ ^c\!F &:= (A, B)\mapsto \,^c\!(F(A,B)) \\
+	\forall F \in \Y,\ F^\ast &:= F \setminus (A, B)\mapsto \{x\mapsto 0\} 
+\end{align}
+
+On précise pour (2) que l'“univers” des FEF (c'est-à-dire tel que le complémentaire de l'univers est $\emptyset$) est $\cF$: On a bien $^c\!\cF = \emptyset$, l'ensemble des fonctions de $A$ dans $B$ qui ne sont pas des fonctions de $A$ dans $B$ est vide. De ce fait, on a:
+
+\[
+	\forall F\in \Y,\ \,^c\!F := \cF \setminus F
+\]. 
+
+On précise pour (3) que 0 représente l'élément neutre du groupe $(A, +)$.
+
+Cette extension de notation permettra notamment de définir les FEF des bijections de manière très succinte.
+
+\subsection{Notation succinte pour définir des FEF}
+
+On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenanble définie:
+
+\[
+	\underset{f:A\to B}{\{P(f, A, B)\}} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
+\]
+\paragraph{Exemple: Définition des fonctions paires}
+\[
+	\evenfunctions := \underset{f:A\to B}{\{f\circ(-\id) = f \}} = (A, B) \mapsto \{f\in B^A,\ f \circ (-\id) = f \} 
+\] 
+
+\subsection{Définition de quelques FEF}
+
+\subsubsection{Dérivabilité, continuité}
+
+Soit $n \in \N$.
+
+\begin{align}
+	\cD_n &:= (A, B) \mapsto  \left\{ f \in B^A,\ \left(\forall a\in A,\ \lim_{\epsilon \to 0} \frac{f(a+\epsilon)-f(a)}{\epsilon} \in \R\right)\right\}  \\
+	\cC_n &:= (A, B) \mapsto \{ f\in B^A, \left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  \} 
+\end{align}
+
+Dans (1), la condition sur la limite implique également que la limite doit exister.
+
+\subsubsection{Monotonie}
+
+Sont définies ci-après les FEF des fonctions croissantes $\increasingfunctions$, des fonctions décroissantes $\decreasingfunctions$ et leurs homologues stricts $\strictlyincreasingfunctions$ et $\strictlydecreasingfunctions$, en s'inspirant fortement des notations de la théorie des ensembles.
 
 \begin{align*}
 	\increasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x \ge y \implies f(x) \ge f(y)) \} \\
@@ -139,17 +264,60 @@ Soient $A$ et $B$ des ensembles.
 	\strictlydecreasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x < y \implies f(x) < f(y)) \} \\
 \end{align*}
 
-\section{Parité}
+\subsubsection{Parité}
+Sont définies ci-après les FEF des fonctions paires $\evenfunctions$ et impaires $\oddfunctions$. Leurs symboles proviennent du graphe d'une fonction $(\text{id})^n$ avec $n$ pair ou impair.
 
 \begin{align*}
 	\evenfunctions &:= (A, B) \mapsto \{ f\in B^A,\ f \circ (-\text{id}) = f \} \\
 	\oddfunctions &:= (A, B) \mapsto \{ f\in B^A,\ f \circ (-\text{id}) = -f \} 
 \end{align*}
 
-\section{Bijectivité}
+\subsubsection{*jectivité}
+
+Sont définies ci-après les FEF des fonctions injectives $\injectivefunctions$, surjectives $\surjectivefunctions$ et bijectives $\bijectivefunctions$. Leurs symboles proviennent des diagrammes sagittaux.
 
 \begin{align*}
-	\bijectivefunctions &:= (A, B) \mapsto \{f\in B^A,\ \exists f^{-1}\in A^B,\ f\circ f^{-1} = \text{id}\} 
+	\injectivefunctions &:= (A, B) \mapsto  \{f\in B^A,\ \left( \forall (a_1,a_2)\in A^2,\ f(a_1)=f(a_2)\implies a_1 = a_2 \right) \} \\
+	\surjectivefunctions &:= (A, B) \mapsto \{f\in B^A,\ \left( \forall b\in B,\ \exists a\in A,\ f(a)=b \right) \} \\
 \end{align*}
+
+La surcharge de la notation d'intersubsection permet de définir facilement $\bijectivefunctions$ à partir de $\injectivefunctions$ et $\surjectivefunctions$: 
+\[
+	\bijectivefunctions := \injectivefunctions \cap \surjectivefunctions
+\] 
+
+C'est enfait la définition même du quantificateur $\exists!$ qui intervient dans cette facilité de définition.
+
+\subsection{Les quasi-FEF}
+
+\subsubsection{Un exemple motivateur: les fonctions primitivables}
+
+\paragraph{}
+On souhaite étendre la définition de $\cD_n$ à tout $n \in \Z$: quand $n < 0$, $\cD_n$ représenterait la FEF des primitivables (i.e. $\cD_n(A, B)$ représenterait l'ensemble des fonctions primitivables sur $A$ de type $A\to B$).
+
+\paragraph{}
+Cependant, il n'y a pas de bijection entre une fonction et sa primitive\footnote{Formellement, en mettant à profit les précédentes définitions: $\exists f \in B^A,\ f\mapsto \int f \not\in \bijectivefunctions(A, B)$}: $\id \cdot \id + 3$ et $\id \cdot \id + 5$ sont toutes les deux des primitives de $2\id$.
+
+\paragraph{}
+Afin de pouvoir définir $\cD_n$ pour $n \in -\N$, il faut passer un troisième argument à $\cD_n$, la constante ajoutée, le fameux “plus c” des anglophones. Donc, pour $n \in -\N$, $\cD_n$ est d'arité 3: {\bf On a, pour tout entier négatif non-nul $n$, $\cD_n \not \in \Y$}.
+
+
+\subsubsection{Définition}
+
+On dit qu'une fonction $G$ est une quasi-FEF si et seulement si:
+
+\begin{itemize}
+	\item $G$ est d'arité strictement supérieure à 2
+	\item $G(A, B, \ldots) \in \mathcal P(\cF(A, B))$
+\end{itemize}
+
+On a, pour tout $n \in -\N^\ast$ et pour tout $c \in B$:
+
+\[
+	\mathcal D_n(A, B, c) := 
+\]
+
+\newpage
+\tableofcontents
 
 \end{document}
