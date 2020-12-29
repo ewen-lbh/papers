@@ -21,6 +21,7 @@
 \newcommand{\img}{\text{Img}\,}
 \newcommand{\R}{{\mathbb R}}
 \newcommand{\Y}{{\mathbb Y}}
+\newcommand{\FEF}[1]{\underset{f:A\to B}{\text{FEF}}#1}
 \renewcommand{\C}{{\mathbb C}}
 \newcommand{\N}{{\mathbb N}}
 \newcommand{\Z}{{\mathbb Z}}
@@ -105,7 +106,7 @@
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\bijectivefunctions}{%
+\newcommand{\bijections}{%
 	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
@@ -115,7 +116,7 @@
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\injectivefunctions}{%
+\newcommand{\injections}{%
 	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
@@ -123,7 +124,7 @@
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\surjectivefunctions}{%
+\newcommand{\surjections}{%
 	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
@@ -154,7 +155,7 @@
 On définit dès lors un nouvel ensemble $\Y$%\footnote{$\Y$ est préféré à $\mathbb F$ car $\mathbb F$ désigne déjà l'ensemble des champs, et $\Y$ n'a aucun usage répertorité sur Wikipédia.
 
 \[
-	\Y &:= \cF(A \times B,\ \mathcal P(\cF(A, B))
+	\Y := \cF(A \times B,\ \mathcal P(\cF(A, B))
 \] 
 Où:
 
@@ -233,11 +234,14 @@ Cette extension de notation permettra notamment de définir les FEF des bijectio
 On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenanble définie:
 
 \[
-	\underset{f:A\to B}{\{P(f, A, B)\}} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
+	\FEF{P(f, A, B)} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
 \]
-\paragraph{Exemple: Définition des fonctions paires}
+Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A, A, B), \Y)$
+
+\paragraph{Exemple: Définition de la FEF des paires}
+
 \[
-	\evenfunctions := \underset{f:A\to B}{\{f\circ(-\id) = f \}} = (A, B) \mapsto \{f\in B^A,\ f \circ (-\id) = f \} 
+	\evenfunctions := \FEF{f\circ (-\id_A)} = (A, B) \mapsto \{f\in B^A,\ f \circ (-\id) = f \} 
 \] 
 
 \subsection{Définition de quelques FEF}
@@ -247,8 +251,8 @@ On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenanble définie
 Soit $n \in \N$.
 
 \begin{align}
-	\cD_n &:= (A, B) \mapsto  \left\{ f \in B^A,\ \left(\forall a\in A,\ \lim_{\epsilon \to 0} \frac{f(a+\epsilon)-f(a)}{\epsilon} \in \R\right)\right\}  \\
-	\cC_n &:= (A, B) \mapsto \{ f\in B^A, \left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  \} 
+	\cD_n &:= \FEF{\left(\forall a\in A,\ \lim_{\epsilon \to 0} \frac{f(a+\epsilon)-f(a)}{\epsilon} \in \R\right)}  \\
+	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } 
 \end{align}
 
 Dans (1), la condition sur la limite implique également que la limite doit exister.
@@ -258,64 +262,35 @@ Dans (1), la condition sur la limite implique également que la limite doit exis
 Sont définies ci-après les FEF des fonctions croissantes $\increasingfunctions$, des fonctions décroissantes $\decreasingfunctions$ et leurs homologues stricts $\strictlyincreasingfunctions$ et $\strictlydecreasingfunctions$, en s'inspirant fortement des notations de la théorie des ensembles.
 
 \begin{align*}
-	\increasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x \ge y \implies f(x) \ge f(y)) \} \\
-	\strictlyincreasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x > y \implies f(x) > f(y)) \} \\
-	\decreasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x \le y \implies f(x) \le f(y)) \} \\
-	\strictlydecreasingfunctions &:= (A, B) \mapsto \{ f\in B^A,\ (\forall x,y\in A,\ x < y \implies f(x) < f(y)) \} \\
+	\increasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \ge y \implies f(x) \ge f(y)\right) } \\
+	\strictlyincreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x > y \implies f(x) > f(y)\right) } \\
+	\decreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \le y \implies f(x) \le f(y)\right) } \\
+	\strictlydecreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x < y \implies f(x) < f(y)\right) } \\
 \end{align*}
 
 \subsubsection{Parité}
 Sont définies ci-après les FEF des fonctions paires $\evenfunctions$ et impaires $\oddfunctions$. Leurs symboles proviennent du graphe d'une fonction $(\text{id})^n$ avec $n$ pair ou impair.
 
 \begin{align*}
-	\evenfunctions &:= (A, B) \mapsto \{ f\in B^A,\ f \circ (-\text{id}) = f \} \\
-	\oddfunctions &:= (A, B) \mapsto \{ f\in B^A,\ f \circ (-\text{id}) = -f \} 
+	\evenfunctions &:= \FEF{f \circ (-\text{id}_A) = f } \\
+	\oddfunctions &:= \FEF{f \circ (-\text{id}_A) = -f} 
 \end{align*}
 
 \subsubsection{*jectivité}
 
-Sont définies ci-après les FEF des fonctions injectives $\injectivefunctions$, surjectives $\surjectivefunctions$ et bijectives $\bijectivefunctions$. Leurs symboles proviennent des diagrammes sagittaux.
+Sont définies ci-après les FEF des fonctions injectives $\injections$, surjectives $\surjections$ et bijectives $\bijections$. Leurs symboles proviennent des diagrammes sagittaux.
 
 \begin{align*}
-	\injectivefunctions &:= (A, B) \mapsto  \{f\in B^A,\ \left( \forall (a_1,a_2)\in A^2,\ f(a_1)=f(a_2)\implies a_1 = a_2 \right) \} \\
-	\surjectivefunctions &:= (A, B) \mapsto \{f\in B^A,\ \left( \forall b\in B,\ \exists a\in A,\ f(a)=b \right) \} \\
+	\injections &:= \FEF{\left( \forall (a_1,a_2)\in A^2,\ f(a_1)=f(a_2)\implies a_1 = a_2 \right)} \\
+	\surjections &:= \FEF{f\in B^A,\ \left( \forall b\in B,\ \exists a\in A,\ f(a)=b \right)}\\
 \end{align*}
 
-La surcharge de la notation d'intersubsection permet de définir facilement $\bijectivefunctions$ à partir de $\injectivefunctions$ et $\surjectivefunctions$: 
+La surcharge de la notation d'intersection permet de définir facilement $\bijections$ à partir de $\injections$ et $\surjections$: 
 \[
-	\bijectivefunctions := \injectivefunctions \cap \surjectivefunctions
+	\bijections := \injections \cap \surjections
 \] 
 
 C'est enfait la définition même du quantificateur $\exists!$ qui intervient dans cette facilité de définition.
-
-\subsection{Les quasi-FEF}
-
-\subsubsection{Un exemple motivateur: les fonctions primitivables}
-
-\paragraph{}
-On souhaite étendre la définition de $\cD_n$ à tout $n \in \Z$: quand $n < 0$, $\cD_n$ représenterait la FEF des primitivables (i.e. $\cD_n(A, B)$ représenterait l'ensemble des fonctions primitivables sur $A$ de type $A\to B$).
-
-\paragraph{}
-Cependant, il n'y a pas de bijection entre une fonction et sa primitive\footnote{Formellement, en mettant à profit les précédentes définitions: $\exists f \in B^A,\ f\mapsto \int f \not\in \bijectivefunctions(A, B)$}: $\id \cdot \id + 3$ et $\id \cdot \id + 5$ sont toutes les deux des primitives de $2\id$.
-
-\paragraph{}
-Afin de pouvoir définir $\cD_n$ pour $n \in -\N$, il faut passer un troisième argument à $\cD_n$, la constante ajoutée, le fameux “plus c” des anglophones. Donc, pour $n \in -\N$, $\cD_n$ est d'arité 3: {\bf On a, pour tout entier négatif non-nul $n$, $\cD_n \not \in \Y$}.
-
-
-\subsubsection{Définition}
-
-On dit qu'une fonction $G$ est une quasi-FEF si et seulement si:
-
-\begin{itemize}
-	\item $G$ est d'arité strictement supérieure à 2
-	\item $G(A, B, \ldots) \in \mathcal P(\cF(A, B))$
-\end{itemize}
-
-On a, pour tout $n \in -\N^\ast$ et pour tout $c \in B$:
-
-\[
-	\mathcal D_n(A, B, c) := 
-\]
 
 \newpage
 \tableofcontents
