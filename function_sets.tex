@@ -201,6 +201,7 @@ On restera au stade d'une définition semi-formelle:
 
 \subsection{Extension des opérateurs ensemblistes aux FEF}
 
+\paragraph{}
 On a, pour tout élément $F \in \Y$:
 
 \begin{enumerate}
@@ -208,26 +209,30 @@ On a, pour tout élément $F \in \Y$:
 	\item $F$ est à valeur d'ensembles
 \end{enumerate}
 
+\paragraph{}
 On en déduit de \emph{tout élément de $\Y$ possède la même arité et renvoie des valeurs de nature ensembliste}.
 
+\paragraph{}
 Il est donc possible d'étendre canoniquement et sans ambiguïté les opérateurs ensemblistes aux FEF.
 On a donc:
 
 \begin{align}
 	\forall \square \in \{\cup, \cap, \setminus, \Delta \},\ \forall (F, G) \in \Y^2,\ F \square G &:= (A, B)\mapsto F(A, B) \square G(A, B) \\
 	\forall F\in \Y,\ ^c\!F &:= (A, B)\mapsto \,^c\!(F(A,B)) \\
-	\forall F \in \Y,\ F^\ast &:= F \setminus (A, B)\mapsto \{x\mapsto 0\} 
+	\forall F \in \Y,\ F^\ast &:= F \setminus (A, B)\mapsto \{x\mapsto 0_A\} 
 \end{align}
 
+\paragraph{}
 On précise pour (2) que l'“univers” des FEF (c'est-à-dire tel que le complémentaire de l'univers est $\emptyset$) est $\cF$: On a bien $^c\!\cF = \emptyset$, l'ensemble des fonctions de $A$ dans $B$ qui ne sont pas des fonctions de $A$ dans $B$ est vide. De ce fait, on a:
 
 \[
 	\forall F\in \Y,\ \,^c\!F := \cF \setminus F
 \]. 
 
-On précise pour (3) que 0 représente l'élément neutre du groupe $(A, +)$.
+On précise pour (3) que $0_A$ représente l'élément neutre du magma unitaire\footnote{i.e. $A$ possède un élément neutre pour $+$} $(A, +)$. Cette définition a donc un sens si et seulement si $(A, +)$ est un magma unitaire.
 
-Cette extension de notation permettra notamment de définir les FEF des bijections de manière très succinte.
+\paragraph{}
+Cette extension de notation permettra notamment de définir la FEF des bijections de manière très succinte (cf \ref{def_FEF_bijections})
 
 \subsection{Notation succinte pour définir des FEF}
 
@@ -248,14 +253,15 @@ Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimab
 
 \subsubsection{Dérivabilité, continuité}
 
-Soit $n \in \N$.
+Soit $n \in \N$. Soit $u \in -\N^\ast$.
 
 \begin{align}
 	\cD_n &:= \FEF{\left(\forall a\in A,\ \lim_{\epsilon \to 0} \frac{f(a+\epsilon)-f(a)}{\epsilon} \in \R\right)}  \\
+	\cD_u &:= \cD_n \cap \FEF{\left(\exists F\in B^A,\ F' = f\right)} \\
 	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } 
 \end{align}
 
-Dans (1), la condition sur la limite implique également que la limite doit exister.
+Dans (4), la condition sur la limite implique également que la limite doit exister.
 
 \subsubsection{Monotonie}
 
@@ -285,12 +291,17 @@ Sont définies ci-après les FEF des fonctions injectives $\injections$, surject
 	\surjections &:= \FEF{f\in B^A,\ \left( \forall b\in B,\ \exists a\in A,\ f(a)=b \right)}\\
 \end{align*}
 
+\label{def_FEF_bijections}
 La surcharge de la notation d'intersection permet de définir facilement $\bijections$ à partir de $\injections$ et $\surjections$: 
 \[
 	\bijections := \injections \cap \surjections
 \] 
 
 C'est enfait la définition même du quantificateur $\exists!$ qui intervient dans cette facilité de définition.
+
+\section{Analyse}
+
+
 
 \newpage
 \tableofcontents
