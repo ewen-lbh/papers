@@ -59,14 +59,14 @@
 \newcommand{\converges}[2]{\xrightarrow[{#1\to #2}]{}}
 \newcommand{\convergedby}[2]{\xleftarrow[{#1\to #2}]{}}
 
-\newcommand{\increasingfunctions}{%
+\newcommand{\decreasingfunctions}{%
 	\begin{tikzpicture}[scale=1.75, baseline=0]%
 		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
 		\draw (1ex,0) arc (0:90:1ex);%
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\strictlyincreasingfunctions}{%
+\newcommand{\strictlydecreasingfunctions}{%
 	\begin{tikzpicture}[scale=1.75, baseline=0]%
 		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
 		\draw (1ex,0) arc (0:90:1ex);%
@@ -74,14 +74,14 @@
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\decreasingfunctions}{%
+\newcommand{\increasingfunctions}{%
 	\begin{tikzpicture}[scale=1.75, baseline=0]%
 		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
 		\draw (0,0) arc (-90:0:1ex);%
 	\end{tikzpicture}\,%
 }
 
-\newcommand{\strictlydecreasingfunctions}{%
+\newcommand{\strictlyincreasingfunctions}{%
 	\begin{tikzpicture}[scale=1.75, baseline=0]%
 		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
 		\draw (0,0) arc (-90:0:1ex);%
@@ -264,8 +264,8 @@ Sont définies ci-après les FEF des fonctions croissantes $\increasingfunctions
 \begin{align*}
 	\increasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \ge y \implies f(x) \ge f(y)\right) } \\
 	\strictlyincreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x > y \implies f(x) > f(y)\right) } \\
-	\decreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \le y \implies f(x) \le f(y)\right) } \\
-	\strictlydecreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x < y \implies f(x) < f(y)\right) } \\
+	\decreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \ge y \implies f(x) \le f(y)\right) } \\
+	\strictlydecreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x > y \implies f(x) < f(y)\right) } \\
 \end{align*}
 
 \subsubsection{Parité}
