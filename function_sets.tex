@@ -140,7 +140,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-	La notation $\cD(A, B)$ désignant l'ensembles des fonctions dérivables sur $A$ de type $A\to B$ est assez commune, et facilement définissable de manière formelle, ainsi que sa généralisation, $\cD^n$, ou son homologue pour les fonctions continues, $\cC$. Mais il y a bien un lien entre ces trois notations: ce sont des \emph{fonctions à valeurs d'ensembles ne contenant que des fonctions du type correspondants aux deux arguments passés à la fonction}, ou, plus succintement, pour tous ensembles $A$ et $B$, $\cD(A, B) \in \mathcal P(\cF(A, B))$.
+	La notation $\cD(A, B)$ désignant l'ensemble des fonctions dérivables sur $A$ de type $A\to B$ est assez commune, et facilement définissable de manière formelle, ainsi que sa généralisation, $\cD^n$, ou son homologue pour les fonctions continues, $\cC$. Mais il y a bien un lien entre ces trois notations: ce sont des \emph{fonctions à valeurs d'ensembles ne contenant que des fonctions du type correspondants aux deux arguments passés à la fonction}, ou, plus succintement, pour tous ensembles $A$ et $B$, $\cD(A, B) \in \mathcal P(\cF(A, B))$.
 	
 %\footnote{On remarque aussi que la notation $\cF$ est elle-même une fonction à ensembles fonctionnels}
 
@@ -161,7 +161,7 @@ Où:
 
 \begin{itemize}
 	\item $\cF$ désigne l'ensemble des fonctions de type $A\to B$. Pour la définition formelle de $\cF$, cf. \ref{formal_def_F}.
-	\item $\mathcal P(A)$ désigne une partie de $A$
+	\item $\mathcal P(A)$ désigne l'ensemble des parties de $A$
 \end{itemize}
 
 \paragraph{}
@@ -190,7 +190,7 @@ Dès lors, par souci de clarté, contrairement à la notation traditionnelle, {\
 \subsection{Définition formelle de $\cF$}
 \label{formal_def_F}
 
-L'ensemble $\cF$ est particulier: \emph{il est nécéssaire que $\cF$ soit définit pour définir $\Y$ même}.
+L'ensemble $\cF$ est particulier: \emph{il est nécéssaire que $\cF$ soit définie pour définir $\Y$ même}.
 
 De ce fait, la définition de $\cF$ nécéssite une définition formelle des applications.
 On restera au stade d'une définition semi-formelle:
@@ -210,7 +210,7 @@ On a, pour tout élément $F \in \Y$:
 \end{enumerate}
 
 \paragraph{}
-On en déduit de \emph{tout élément de $\Y$ possède la même arité et renvoie des valeurs de nature ensembliste}.
+On en déduit que \emph{tout élément de $\Y$ possède la même arité et renvoie des valeurs de nature ensembliste}.
 
 \paragraph{}
 Il est donc possible d'étendre canoniquement et sans ambiguïté les opérateurs ensemblistes aux FEF.
@@ -236,14 +236,14 @@ Cette extension de notation permettra notamment de définir la FEF des bijection
 
 \subsection{Notation succinte pour définir des FEF}
 
-On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenanble définie:
+On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenablement définie:
 
 \[
 	\FEF{P(f, A, B)} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
 \]
 Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A, A, B), \Y)$
 
-\paragraph{Exemple: Définition de la FEF des paires}
+\subsubsection{Exemple: Définition de la FEF des paires}
 
 \[
 	\evenfunctions := \FEF{f\circ (-\id_A)} = (A, B) \mapsto \{f\in B^A,\ f \circ (-\id) = f \} 
