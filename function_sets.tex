@@ -144,7 +144,7 @@
 	
 %\footnote{On remarque aussi que la notation $\cF$ est elle-même une fonction à ensembles fonctionnels}
 
-	Dans cet article est exploré cette “classe” d'objets particuliers. On défini pour tout le reste de l'article l'abbréviation {\bf FEF}, signifiant “Fonctions à valeurs d'ensembles fonctionnels”. On note dans la suite de tout l'article $A$ et $B$ deux ensembles quelconques, $:=$ l'égalité par définition et $\text{univers}$ l'unique ensemble tel que pour tout ensemble $A$, $A \subset \text{univers}$.
+	Dans cet article est exploré cette “classe” d'objets particuliers. On défini pour tout le reste de l'article l'abbréviation {\bf FEF}, signifiant “Fonctions à valeurs d'ensembles fonctionnels”. On note dans la suite de tout l'article $A$ et $B$ deux ensembles quelconques, $:=$ l'égalité par définition et $\text{univers}$ l'unique ensemble tel que pour tout ensemble $A$, $A \neq \text{univers} \implies A \subset \text{univers}$.
 \end{abstract}
 
 \section{Définitions}
@@ -256,7 +256,7 @@ Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimab
 Soit $n \in \N$. Soit $u \in -\N^\ast$.
 
 \begin{align}
-	\cD_n &:= \FEF{\left(\forall a\in A,\ \lim_{\epsilon \to 0} \frac{f(a+\epsilon)-f(a)}{\epsilon} \in \R\right)}  \\
+	\cD_n &:= \FEF{\left(\exists l\in \R,\ \frac{f(x)-f(a)}{x-a} \goesto{x}{a} l \right)}  \\
 	\cD_u &:= \FEF{\left(\exists F\in B^A,\ F' = f\right)} \\
 	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } 
 \end{align}
