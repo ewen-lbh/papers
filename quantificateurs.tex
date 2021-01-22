@@ -1,0 +1,185 @@
+% Basic stuff
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage[bookmarks, hidelinks, unicode]{hyperref}
+\usepackage[]{amsmath,amssymb}
+\usepackage{stmaryrd}
+\usepackage{tikz}
+\usepackage{lmodern}
+\usepackage{soul}
+\usepackage{float}
+
+% Packages configuration
+\usetikzlibrary{shapes.arrows, angles, quotes}
+\renewcommand{\arraystretch}{1.4}
+\restylefloat{table}
+
+% Shortcut commands
+\newcommand{\im}{\text{Im}\,}
+\newcommand{\re}{\text{Re}\,}
+\newcommand{\img}{\text{Img}\,}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Y}{{\mathbb Y}}
+\newcommand{\FEF}[1]{\underset{f:A\to B}{\text{FEF}}#1}
+\renewcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\Q}{{\mathbb Q}}
+\renewcommand{\U}{{\mathbb U}}
+\newcommand{\cC}{{\mathcal C}}
+\newcommand{\kC}{{\mathfrak C}}
+\newcommand{\cD}{{\mathcal D}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cP}{{\mathcal P}}
+\newcommand{\cotan}{\operatorname{cotan}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\Aff}{\text{Aff}}
+\newcommand{\twoRows}[1]{\multirow{2}{*}{#1}}
+\newcommand{\threeRows}[1]{\multirow{3}{*}{#1}}
+\newcommand{\twoCols}[1]{\multicolumn{2}{c|}{#1}}
+\newcommand{\threeCols}[1]{\multicolumn{3}{|c|}{#1}}
+\newcommand{\twoColsNB}[1]{\multicolumn{2}{c}{#1}}
+\newcommand{\goesto}[2]{\xrightarrow[#1\:\to\:#2]{}}
+\newcommand{\liminfty}{\lim_{x\to+\infty}}
+\newcommand{\limminfty}{\lim_{x\to-\infty}}
+\newcommand{\limzero}{\lim_{x\to0}}
+\newcommand{\const}{\text{cste}}
+\newcommand{\et}{\:\text{et}\:}
+\newcommand{\ou}{\:\text{ou}\:}
+\newcommand{\placeholder}{\diamond}
+\newcommand{\mediateur}{\:\text{med}\:}
+\newcommand{\milieu}{\:\text{mil}\:}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\point}[2]{(#1;\;#2)}
+\newcommand{\spacepoint}[3]{\begin{pmatrix}#1\\#2\\#3\end{pmatrix}}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\ch}{\operatorname{ch}}
+\renewcommand{\th}{\operatorname{th}}
+\newcommand{\id}{\operatorname{id}}
+\renewcommand{\cong}{\equiv}
+\newcommand{\converges}[2]{\xrightarrow[{#1\to #2}]{}}
+\newcommand{\convergedby}[2]{\xleftarrow[{#1\to #2}]{}}
+
+\newcommand{\decreasingfunctions}{%
+	\begin{tikzpicture}[scale=1.75, baseline=0]%
+		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
+		\draw (1ex,0) arc (0:90:1ex);%
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\strictlydecreasingfunctions}{%
+	\begin{tikzpicture}[scale=1.75, baseline=0]%
+		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
+		\draw (1ex,0) arc (0:90:1ex);%
+		\draw (0.75ex,0.125ex) -- (0.25ex,-0.5ex);%
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\increasingfunctions}{%
+	\begin{tikzpicture}[scale=1.75, baseline=0]%
+		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
+		\draw (0,0) arc (-90:0:1ex);%
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\strictlyincreasingfunctions}{%
+	\begin{tikzpicture}[scale=1.75, baseline=0]%
+		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
+		\draw (0,0) arc (-90:0:1ex);%
+		\draw (0.75ex,0.125ex) -- (0.25ex,-0.5ex);%
+	\end{tikzpicture}\,%
+}
+\newcommand{\periodicfunctions}{\circlearrowleft}
+\newcommand{\concave}{}
+\newcommand{\convexes}{}
+\newcommand{\intensives}{}
+\newcommand{\extensives}{}
+
+\newcommand{\evenfunctions}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-1ex,0) -- (1ex,0);%
+		\draw (0,-1ex) -- (0, 1ex);%
+		\draw (0ex, 0ex) arc (-90:0:1ex);%
+		\draw (0ex, 0ex) arc (90:0:-1ex);%
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\oddfunctions}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-1ex,0) -- (1ex,0);%
+		\draw (0,-1ex) -- (0, 1ex);%
+		\draw (0ex, 0ex) arc (-90:0:1ex);%
+		\draw (0ex, 0ex) arc (-90:0:-1ex);%
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\bijections}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0.5ex) -- (0.75ex,0.5ex);
+		\draw (-0.75ex,0) -- (0.75ex,0);
+		\draw (-0.75ex,-0.5ex) -- (0.75ex,-0.5ex);
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\injections}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0) -- (0.75ex,0);
+	\end{tikzpicture}\,%
+}
+
+\newcommand{\surjections}{%
+	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
+		\draw (-0.75ex,0.5ex) -- (0.75ex,0);
+		\draw (-0.75ex,-0.5ex) -- (0.75ex,0);
+	\end{tikzpicture}\,%
+}
+% Document
+
+\author{Ewen Le Bihan}
+\date{2020-12-29}
+\title{Quantificateurs sur contraintes arbitraires}
+\begin{document}
+\maketitle
+\begin{abstract}
+\paragraph{}
+Il est coutume largement répandue en mathématiques d'utiliser les quantificateurs $\forall$ et $\exists $ (ainsi que le “\emph{pseudo-quantificateur}” $\exists!$) pour indiquer qu'une proposition logique est vraie sur une partie de l'ensemble dans lequel la variable est introduite.
+
+\paragraph{}
+Cependant, par abus de notation, il est courant de quantifier une variable sur une condition autre qu'une appartenance à un certain ensemble: selon le contexte, $\forall n>0$ peut être équivalent à $\forall n\in \N^\ast$, $\forall n\in \R_+^\ast$, etc.
+
+\paragraph{}
+Mais si cet abus de notation est si commun, c'est qu'il a bien une utilité. Il convient donc d'étendre la définition des quantificateurs à l'inégalité --- et même à \emph{n'importe quelle contrainte sur une variable}.
+
+\paragraph{}
+Dans tout l'article, on note $\mathfrak C$ une proposition logique a $n\in \N$ arguments appelée \emph{contrainte}.
+\end{abstract}
+
+\section{La particularité des quantificateurs: un introduisant}
+\paragraph{}
+Définir formellement un quantificateur peut s'avérer plus compliqué que ce que l'on pense au premiers abords.
+En effet, les quantificateurs ont la particularité unique d'agir sur une variable indéfinie, il servent justement à \emph{définir} des variables.
+\paragraph{}
+On ne peut donc réduire le quantificateur à une simple fonction.
+\paragraph{}
+On a donc deux possibles approches à la définition formelle élargie des quantificateurs:
+
+\begin{itemize}
+	\item Reposer sur la définition déjà étable des quantifications sur appartenances à un ensemble
+	\item Redéfinir formellement les quantificateurs à partir de zéro
+\end{itemize}
+
+Les deux approches seront explorées dans cet article.
+
+\section{Extension du cas $\kC = \in$}
+\[
+	\forall \kC(a_1,\ a_2,\ \ldots,\ a_n) := \forall (a_1,\ \ldots,\ a_n)\in \{ a,\ \kC(a) \}^n 
+\] 
+
+\end{document}
