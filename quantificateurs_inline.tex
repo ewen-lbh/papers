@@ -26,8 +26,10 @@
 \newcommand{\N}{{\mathbb N}}
 \newcommand{\Z}{{\mathbb Z}}
 \newcommand{\Q}{{\mathbb Q}}
+\newcommand{\K}{{\mathbb K}}
 \renewcommand{\U}{{\mathbb U}}
 \newcommand{\cC}{{\mathcal C}}
+\newcommand{\cL}{{\mathcal L}}
 \newcommand{\kC}{{\mathfrak C}}
 \newcommand{\cD}{{\mathcal D}}
 \newcommand{\cF}{{\mathcal F}}
@@ -144,44 +146,57 @@
 
 \author{Ewen Le Bihan}
 \date{2020-12-29}
-\title{Quantificateurs sur contraintes arbitraires}
+\title{Quantification ``inline''}
 \begin{document}
 \maketitle
 \begin{abstract}
-\paragraph{}
-Il est coutume largement répandue en mathématiques d'utiliser les quantificateurs $\forall$ et $\exists $ (ainsi que le “\emph{pseudo-quantificateur}” $\exists!$)
-pour indiquer qu'une proposition logique est vraie sur une partie de l'ensemble dans lequel la variable est introduite.
+Dans de nombreux énoncés de théorèmes et autres, il arrive souvent qu'un grand nombre de variables soit définies
+avant l'énoncé du théorème, ce qui peut parfois gravement allonger le temps de lecture et de compréhension.
 
-\paragraph{}
-Cependant, par abus de notation, il est courant de quantifier une variable sur une condition autre qu'une appartenance à un certain ensemble: selon le contexte, 
-$\forall n>0$ peut être équivalent à $\forall n\in \N^\ast$, $\forall n\in \R_+^\ast$, etc.
+Cet article propose une nouvelle notation permettant de quantifier des variables dans une expression (d'où le ``inline'')
 
-\paragraph{}
-Mais si cet abus de notation est si commun, c'est qu'il a bien une utilité. Il convient donc d'étendre la définition des quantificateurs à l'inégalité --- et même à \emph{n'importe quelle contrainte sur une variable}.
-
-\paragraph{}
-Dans tout l'article, on note $\mathfrak C$ une proposition logique a $n\in \N$ arguments appelée \emph{contrainte}.
 \end{abstract}
 
-\section{La particularité des quantificateurs: un introduisant}
-\paragraph{}
-Définir formellement un quantificateur peut s'avérer plus compliqué que ce que l'on pense au premiers abords.
-En effet, les quantificateurs ont la particularité unique d'agir sur une variable indéfinie, il servent justement à \emph{définir} des variables.
-\paragraph{}
-On ne peut donc réduire le quantificateur à une simple fonction.
-\paragraph{}
-On a donc deux possibles approches à la définition formelle élargie des quantificateurs:
+\section{Un exemple}
 
-\begin{itemize}
-	\item Reposer sur la définition déjà étable des quantifications sur appartenances à un ensemble
-	\item Redéfinir formellement les quantificateurs à partir de zéro
-\end{itemize}
+Considérons le théorème des isomorphismes:
 
-Les deux approches seront explorées dans cet article.
+\paragraph{Sans \emph{inlining} }
 
-\section{Extension du cas $\kC = \in$}
-\[
-	\forall \kC(a_1,\ a_2,\ \ldots,\ a_n) := \forall (a_1,\ \ldots,\ a_n)\in \{ a,\ \kC(a) \}^n 
-\] 
+Soit $E, F$ deux $\K$-espaces vectoriels.
+Soit  $p \in \N^{\ast}$.
+
+Notons $\begin{cases}
+	E_1 \oplus E_2 \oplus \cdots \oplus E_p := E \\
+	\phi_1 \in \cL(E_1, F) \\
+						\vdots \\
+	\phi_p \in \cL(E_p, F) \\
+\end{cases}$
+
+On a alors:
+
+\begin{align*}
+	\exists! \phi \in \cL(E, F), \forall i\in \llbracket 1, p \rrbracket, \phi_{|E_i} = \phi_i
+\end{align*}
+
+\paragraph{Avec \emph{inlining} }
+
+
+Soit $E, F$ deux $\K$-espaces vectoriels.
+Soit  $p \in \N^{\ast}$.
+
+On a:
+
+\begin{align*}
+	\exists !\phi\in \cL(E, F), \phi_{|(E_1 \oplus \cdots \oplus \fbox{E_k} \oplus E_p = E)} = (\fbox{\phi_k} \in \cL(E_k, F))
+\end{align*}
+
+\paragraph{Avec  \emph{inlining} excessif}
+
+On peut théoriquement faire rentrer l'énoncé complet en une expression, mais le gain en clarté se transforme en perte:
+
+\begin{align*}
+	\exists !\phi\in \cL((\fbox{E} \in \K\text{-evs}), (\fbox{F}\in \K\text{-evs})), \phi_{|(E_1 \oplus \cdots \oplus \fbox{E_k} \oplus E_{(\fbox{p}\in \N^{\ast})} = E)} = (\fbox{\phi_k} \in \cL(E_k, F))
+\end{align*}
 
 \end{document}
