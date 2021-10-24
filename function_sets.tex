@@ -123,7 +123,7 @@
 }
 
 \newcommand{\bijections}{%
-	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+	\begin{tikzpicture}[scale=1.25, baseline=-0.75ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (-0.75ex,0.5ex) -- (0.75ex,0.5ex);
@@ -133,7 +133,7 @@
 }
 
 \newcommand{\injections}{%
-	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+	\begin{tikzpicture}[scale=1.25, baseline=-0.75ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (-0.75ex,0) -- (0.75ex,0);
@@ -141,7 +141,7 @@
 }
 
 \newcommand{\surjections}{%
-	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
+	\begin{tikzpicture}[scale=1.25, baseline=-0.75ex]%
 		\draw (-0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (0.75ex,0) ellipse (0.5ex and 1ex);
 		\draw (-0.75ex,0.5ex) -- (0.75ex,0);
@@ -229,13 +229,12 @@ On a, pour tout élément $F \in \Y$:
 On en déduit que \emph{tout élément de $\Y$ possède la même arité et renvoie des valeurs de nature ensembliste}.
 
 \paragraph{}
-Il est donc possible d'étendre canoniquement et sans ambiguïté les opérateurs ensemblistes aux FEF.
-On a donc:
+Il est donc possible d'étendre canoniquement et sans ambiguïté les opérateurs ensemblistes aux FEF. Soient $F, G \in \Y$. On a:
 
 \begin{align}
-	\forall \square \in \{\cup, \cap, \setminus, \Delta \},\ \forall (F, G) \in \Y^2,\ F \square G &:= (A, B)\mapsto F(A, B) \square G(A, B) \\
-	\forall F\in \Y,\ ^c\!F &:= (A, B)\mapsto \,^c\!(F(A,B)) \\
-	\forall F \in \Y,\ F^\ast &:= F \setminus (A, B)\mapsto \{x\mapsto 0_A\} 
+	\forall \square \in \{\cup, \cap, \setminus, \Delta, \subseteq, \subsetneq, \supseteq, \supsetneq \},\ F \square G &:= (A, B)\mapsto F(A, B) \square G(A, B) \\
+    \ ^c\!F &:= (A, B)\mapsto \,^c\!(F(A,B)) \\
+	\ F^\ast &:= F \setminus (A, B)\mapsto \{x\mapsto 0_A\} 
 \end{align}
 
 \paragraph{}
@@ -272,7 +271,7 @@ On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenablement défi
 \[
 	\FEF{P(f, A, B)} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
 \]
-Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A, A, \mathbb{B}), \Y)$
+Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A  \times A  \times  B,\ \mathbb{B}), \Y)$
 
 \subsubsection{Exemple: Définition de la FEF des paires}
 
@@ -289,10 +288,8 @@ Soit $n \in \N$. Soit $u \in -\N^\ast$.
 \begin{align*}
 	\cD_n &:= \FEF{\left(\exists l\in \R,\ \frac{f(x)-f(a)}{x-a} \goesto{x}{a} l \right)}  \\
 	\cD_u &:= \FEF{\left(\exists F\in B^A,\ F' = f\right)} \\
-	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } \\
-	U\!\cC &:= \FEF{\forall a \in A,\ \forall \epsilon>0,\ \exists \eta>0,\ \forall x\in A,\ |x-a|<\epsilon \implies |f(x)-f(a)|<\eta}
-\end{align*}
-
+	\cC_n &:= \FEF{\left( \forall a\in A,\ f\in \cD_{n} \land f^{(n)} \goesto{\epsilon}{a} f^{(n)}(a) \right)  } 
+\end{align}
 
 \subsubsection{Monotonie}
 
@@ -362,6 +359,15 @@ On généralise ici la notation $D_f$ à n'importe quel FEF:
 .\end{align*}
 
 $A$ étant le neutre pour la restriction de $f:A\to B$, on a bien $D_{f, \cF} = A = D_f$.
+\subsection{Composition directe}
+
+Il est parfois utile d'exprimer l'ensemble de composées d'un FEF avec un autre.
+
+On définit ainsi la composition directe:
+
+\begin{align*}
+	\forall E, F \in \Y,\ E \circledcirc F := \FEF{}
+\end{align*}
 
 \section{Applications}
 
@@ -383,8 +389,16 @@ Notamment:
 		\[
 			\forall A, B\in \cP(\text{univers}),\ A \approx B \overset{\text{def}}{\iff} \bijections(A, B) \neq \emptyset
 		\] 
+	\item Les isomorphismes, $\mathcal{L} \cap \bijections$
 \end{itemize}
 
+\subsection{Quelques résultats immédiats}
+
+\begin{align*}
+	\forall n\in \N,\ \cC_n &\subsetneq \cD_n \\
+	\strictlyincreasingfunctions &\subsetneq \increasingfunctions \\
+	\strictlydecreasingfunctions &\subsetneq \decreasingfunctions \\
+\end{align*}
 
 
 \newpage
