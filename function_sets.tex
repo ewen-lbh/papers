@@ -31,6 +31,7 @@
 \newcommand{\cD}{{\mathcal D}}
 \newcommand{\cF}{{\mathcal F}}
 \newcommand{\cP}{{\mathcal P}}
+\newcommand{\cL}{{\mathcal L}}
 \newcommand{\cotan}{\operatorname{cotan}}
 \newcommand{\conj}[1]{\overline{#1}}
 \newcommand{\Aff}{\text{Aff}}
@@ -89,7 +90,20 @@
 		\draw (0.75ex,0.125ex) -- (0.25ex,-0.5ex);%
 	\end{tikzpicture}\,%
 }
+\newcommand{\strictlymonotonics}{%
+	\begin{tikzpicture}[scale=1.75, baseline=0]%
+		\draw (0,-0.25ex) -- (1ex,-0.25ex);%
+		\draw (0,0) arc (-90:0:1ex);%
+		\draw (1ex,0) arc (0:90:1ex);%
+		\draw (0.75ex,0.125ex) -- (0.25ex,-0.5ex);%
+	\end{tikzpicture}\,%
+}
 \newcommand{\periodicfunctions}{\circlearrowleft}
+\newcommand{\concave}{}
+\newcommand{\convexes}{}
+\newcommand{\intensives}{}
+\newcommand{\extensives}{}
+
 \newcommand{\evenfunctions}{%
 	\begin{tikzpicture}[scale=1.5, baseline=-0.5ex]%
 		\draw (-1ex,0) -- (1ex,0);%
@@ -248,6 +262,9 @@ On redéfini donc $\in$ avec une fonction à gauche et un FEF à droite de la ma
 	\end{cases} \implies \left( \text{LHS}\in \text{RHS} \overset{\text{def}}{\iff} \text{LHS}\in \text{RHS}(A, B) \right) 
 \] 
 
+Par exemple, on a $f\in \cC$ équivalent à $f\in \cC(D_f, f^{\to }(D_f))$.
+Cette notation est pratique pour exprimer des contraintes sur des fonctions dont on connaît déjà la source et le but.
+
 \subsection{Notation succinte pour définir des FEF}
 
 On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenablement définie:
@@ -255,7 +272,7 @@ On note, pour tout $F \in \Y$ et pour toute proposition $P$ convenablement défi
 \[
 	\FEF{P(f, A, B)} := (A, B) \mapsto \{f\in B^A,\ P(f, A, B)\} 
 \]
-Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A, A, B), \Y)$
+Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimable en tant que fonction, en effet, on a $\text{FEF} \in \cF(B^A \times A \times B \times \cF(B^A, A, \mathbb{B}), \Y)$
 
 \subsubsection{Exemple: Définition de la FEF des paires}
 
@@ -269,24 +286,40 @@ Cette notation définit un opérateur similaire à $\text{lim}$ qui est exprimab
 
 Soit $n \in \N$. Soit $u \in -\N^\ast$.
 
-\begin{align}
+\begin{align*}
 	\cD_n &:= \FEF{\left(\exists l\in \R,\ \frac{f(x)-f(a)}{x-a} \goesto{x}{a} l \right)}  \\
 	\cD_u &:= \FEF{\left(\exists F\in B^A,\ F' = f\right)} \\
-	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } 
-\end{align}
+	\cC_n &:= \FEF{\left( \forall a\in A,\ \lim_{\epsilon \to a} f(\epsilon) = a \right)  } \\
+	U\!\cC &:= \FEF{\forall a \in A,\ \forall \epsilon>0,\ \exists \eta>0,\ \forall x\in A,\ |x-a|<\epsilon \implies |f(x)-f(a)|<\eta}
+\end{align*}
 
-Dans (4), la condition sur la limite implique également que la limite doit exister.
 
 \subsubsection{Monotonie}
 
 Sont définies ci-après les FEF des fonctions croissantes $\increasingfunctions$, des fonctions décroissantes $\decreasingfunctions$ et leurs homologues stricts $\strictlyincreasingfunctions$ et $\strictlydecreasingfunctions$, en s'inspirant fortement des notations de la théorie des ensembles.
+Finalement, le FEF des fonctions strictements monotones est noté $\strictlymonotonics$.
 
 \begin{align*}
 	\increasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \ge y \implies f(x) \ge f(y)\right) } \\
 	\strictlyincreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x > y \implies f(x) > f(y)\right) } \\
 	\decreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x \ge y \implies f(x) \le f(y)\right) } \\
 	\strictlydecreasingfunctions &:= \FEF{\left(\forall x,y\in A,\ x > y \implies f(x) < f(y)\right) } \\
+	\strictlymonotonics &:= \strictlydecreasingfunctions \cup \strictlyincreasingfunctions 
 \end{align*}
+
+\subsubsection{Concavité}
+
+% Sont définies ci-après les FEF des fonctions concaves $\concaves$ et convexes $\convexes$
+
+\subsubsection{Lipschitziannité}
+
+On définit ici formellement les ensembles $k\!\!-\!\!\cL$ et $\cL$
+
+\begin{align*}
+	\forall k\in \R_+^\ast,\ k\!\!-\!\!\cL &:= \FEF{ \forall x,y\in A,\ |f(x)-f(y)|\le k|x-y| } \\
+	\cL &:= \bigcup_{k\in \R_+^\ast} k\!\!-\!\!\cL
+.\end{align*}
+
 
 \subsubsection{Parité}
 Sont définies ci-après les FEF des fonctions paires $\evenfunctions$ et impaires $\oddfunctions$. Leurs symboles proviennent du graphe d'une fonction $(\text{id})^n$ avec $n$ pair ou impair.
@@ -314,11 +347,21 @@ La surcharge de la notation d'intersection permet de définir facilement $\bijec
 C'est enfait la définition même du quantificateur $\exists!$ qui intervient dans cette facilité de définition.
 
 \subsubsection{Périodicité}
-Soit $T \in A$.
+Soit $T \in A$. On définit les fonctions périodiques de période $T$ et les fonctions périodiques, respectivement.
 
 \begin{align*}
-	\periodicfunctions_T &:= \FEF{\forall n \in \Z,\ f \circ (\id + nT) = f}
+	\periodicfunctions_T &:= \FEF{\forall n \in \Z,\ f \circ (\id + nT) = f} \\
+	\periodicfunctions &:= \bigcup_{T\in \R_+} \periodicfunctions_T
 .\end{align*}
+
+\subsection{Domaine d'appartenance à un FEF}
+On généralise ici la notation $D_f$ à n'importe quel FEF:
+
+\begin{align*}
+	\forall F\in \Y,\ \forall f\in B^A,\ D_{f, F} := \{ I\subset A,\ f_{|I} \in F \} 
+.\end{align*}
+
+$A$ étant le neutre pour la restriction de $f:A\to B$, on a bien $D_{f, \cF} = A = D_f$.
 
 \section{Applications}
 
