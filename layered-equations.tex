@@ -1,0 +1,209 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bookmarks]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\input{/home/ewen/rb/math/.headers/additions.tex}
+\newcommand{\fc}{\mathcal{F}}
+
+\DeclareMathOperator*{\stackop}{StackOp}
+\DeclareMathOperator{\chars}{chars}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title{Layered equations}
+\author{Ewen Le Bihan}
+\date{2021-10-24}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	The $\pm$ symbol is often used to avoid duplication in some situations, 
+	but its formal definition is still vague: does it create a pair of equations ?
+	Does it simply expand to both equations separated by a comma, so that $\{\pm 1	\} = \{+1, -1\}  $?
+	And, more interestingly, what happens when \emph{multiple} $\pm$ symbols appear in the same equation?
+	This question leads to a more general notion of "factoring out" patterns 
+	of symbols -- what will later be called the \emph{compression} of a formula -- 
+	in equations to make them more succint and, to some extent, 
+	easier to understand and/or memorize.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+\subsection{Using $\pm$ is a form of formula compression}
+\label{plus-minus-is-formula-compression}
+
+It is common to write roots of a second-degree polynomial as a single equation, using $\pm$.
+
+Consider the following \emph{compressed} equation:
+
+\begin{align*}
+	x_0 &= \frac{1}{2} \pm i\sqrt{5}  \\
+\end{align*}
+
+We can \emph{expand} that formula to the following two formulas:
+
+\begin{align*}
+	x_0 &= \frac{1}{2} + i\sqrt{5} \tag{top layer} \\
+	x_0 &= \frac{1}{2} - i\sqrt{5} \tag{bottom layer} \\
+\end{align*}
+
+Intuitively, the $\pm$ acts as two symbols \emph{stacked} atop each other.
+
+It is as if both expressions were \emph{layered}, with the invariant parts, $x_0 = \frac{1}{2}$ and $i\sqrt{5} $,
+
+This process of compressing formulas can be expanded to handle more complicated patterns.
+
+\subsection{Second-order formula compression}
+
+Take the following pair of equations, known as \emph{De Morgan's laws} in logic.
+
+\begin{align*}
+	\lnot (A \land B) &= \lnot A \lor \lnot B \tag{top layer} \\
+	\lnot (A \lor B) &= \lnot A \land \lnot B \tag{bottom layer}
+\end{align*}
+
+We can clearly see a pattern in these two equations: ``The $\land$ becomes a $\lor$, and the $\lor$ becomes a $\land$''
+
+As with the compression of polynomial roots given in \ref{plus-minus-is-formula-compression}, we can consider those two equations as \emph{layers}, and stack them up, leaving the invariant parts in place and stacking operators that differ:
+
+\begin{align*}
+	\lnot \left(A {\land \atop \lor} B\right) &= \lnot \left(A {\lor \atop \land} B\right) \\
+\end{align*}
+
+But we face a problem of ambiguity when more than one operator differs: does the above equation expands to \emph{all possible combinations}, or does it expand to the two layers above?
+
+Unfortunately, the current consensus would be the first: the equation $\pm 1 \pm i \sqrt{2} $ is understood as standing for $+ 1 \pm i \sqrt{2} $ and $-1\pm i\sqrt{2} $.
+
+With this definition, our compression of De Morgan's laws would mean
+
+\begin{align*}
+	\lnot(A \land B) &= \lnot A \lor \lnot B \\
+	\lnot(A \land B) &= \lnot A \land \lnot B \\
+	\lnot(A \lor B) &= \lnot A \lor \lnot B \\
+	\lnot(A \lor B) &= \lnot A \land \lnot B \\
+\end{align*}.
+
+These two definitions of compressed formula expansion need to coexist, as the former allows for compatibility with the current consensus, and the latter allows for the successful compression of patterns in equations.
+
+\section{Definitions}
+
+\begin{definition}[Stacked operator]
+	An operator that expands to multiple operators.
+	\paragraph{}
+	Let $n\in \mathbb{N}^\ast$ and $\circ_1, \circ_2, \ldots, \circ_n \in \fc(E \times E, F)$ binary operators  from a set $E$ to another set $F$.
+
+	\paragraph{}
+	The \emph{stacked operator of $\circ_1, \circ_2, \ldots, \circ_n$} is an operator in $\fc(E \times E, F)$ written as
+	\[
+		\begin{matrix} \circ_1 \\ \circ_2 \\ \vdots \\ \circ_n \end{matrix} 
+	\] 
+
+	or \[
+		\stackop(\circ_1, \circ_2, \ldots, \circ_n)
+	\] 
+
+	The $\stackop$ notation can also be used with indices or even sets of operators (as the order of expansion does not matter, see \ref{def:expansion}), following the notation of $\max$,  $\min$ and other  \emph{big operators}:
+
+	\begin{align*}
+		\stackop\left( \circ_1, \ldots, \circ_n \right) &=:  \stackop_{k=1}^n \circ_k \\
+					&=: \stackop_{k\in \llbracket 1, n\rrbracket} \circ_k \\
+					&=: \stackop_{\circ \in \{\circ_1, \ldots, \circ_n\} } \circ  \\
+					&=: \stackop_{ \{\circ_1, \ldots, \circ_n\}  }
+	\end{align*}
+\end{definition}
+
+\begin{definition}[Expansion of a stacked operator]
+	Let $\circ = \stackop_{i=0}^n \circ_i$ a stacked operator.
+
+	The expansion of $\circ$ is the family of operators  $(\circ_i)_{1\le i\le n}$, noted ${}^\text{E}\circ$
+	
+	\paragraph{}
+	(We thus have ${}^\text{E}{\stackop} \fc = \fc$ for any family of operators $\fc$.)
+\end{definition}
+
+\begin{definition}[Layered formula]
+	A formula in which appears one or more \emph{stacked operators}.
+\end{definition}
+
+\begin{definition}[Characters of a formula]
+	Let $F$ a formula, layered or not.
+	The characters of $F$  $\chars{F}$ is the family of symbols  $(c_i)_{1\le i\le \#F}$ such that
+	\[
+		\bigsqcup_{i=1}^{\#F} c_i \equiv F
+	\], where $\equiv$ is the syntactical equality, $\#F$ is the number of symbols characters in $F$ and $\sqcup$ is the concatenation of symbols.
+\end{definition}
+
+\begin{definition}[Expansion of a layered formula $L$]
+	Let $(c_k)_{1\le k\le \#L} = \chars L$.
+	An  \emph{expansion of $L$} is a family of expanded formula $\left( \mathcal E_i \right)_{i\in I} $ such that
+
+	\begin{itemize}
+		\item $\bigwedge_{i\in I} \mathcal{E}_i &\iff L$ 
+		\item $\forall i\in I, \forall k\in \llbracket 1, \#L\rrbracket, \begin{cases}
+				(\chars \mathcal{E}_i)_k \in c_k &\text{if $c_k$ is a stacked operator} \\
+				(\chars \mathcal{E}_i)_k \equiv c_k &\text{otherwise}
+			\end{cases}$ 
+	\end{itemize}
+
+	The first property is called  \emph{truth}, and the second is called \emph{relevance}.
+
+	
+\end{definition}
+
+\begin{theorem}[Commutativity of an expansion]
+	Let $L$ a layered formula.
+	If $(\mathcal{E}_1, \ldots, \mathcal{E}_n)$ is an expansion of $L$, then for all $\sigma\in S_n, (\mathcal{E}_{\sigma(i)})_{1\le i\le n}$ is an expansion of $L$
+\end{theorem}
+
+\begin{proof}
+	Let $\sigma\in S_n$.
+	Suppose $\bigwedge_{1\le i\le n} \mathcal{E}_i \iff L$.
+	\paragraph{Truth}
+
+	\begin{align*}
+		\bigwedge_{1\le i\le n} \mathcal{E}_{\sigma(i)} &\iff \bigwedge_{1\le i\le n} \mathcal{E}_i  \tag{by commutativity of $\land$} \\
+								&\iff L \tag{by definition}
+	\end{align*}
+
+	The expansion $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is therefore \emph{true}.
+
+	\paragraph{Relevance}
+	%TODO more formal
+	The \emph{relevance} property is defined by a universal quantification over $I$, the set of indices of the expansion.
+	The set of indices of the expansion $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is $\sigma(I) = I$, as $\sigma$ is a bijection from $I$ to $I$.
+
+	Therefore, as  $(\mathcal{E}_i)_{i\in I}$ is \emph{relevant} by definition, $(\mathcal{E}_{\sigma(i)}_{i\in I}$ is \emph{relevant} too.
+
+	\paragraph{Conclusion}
+	$(\mathcal{E}_{\sigma(i)})_{i\in I}$ is both \emph{relevant}  and \emph{true}, thus $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is an expansion of $L$
+\end{proof}
+
+\begin{definition}[Canonical expansion of a layered formula $L$]
+
+	The canonical expansion of $L$, noted  ${}^\text{E} L$, is an expansion of $L$,  $(\mathcal{E}_i)_{i\in I}$, such that
+	\begin{align*}
+		\forall i\in I, \forall k\in \llbracket 1, \#L\rrbracket, \begin{cases}
+			(\chars \mathcal{E}_i)_k \equiv ({}^\text{E} (\chars L)_k)_i &\text{if $(\chars L)_k$ is a stacked operator} \\
+			\top &\text{otherwise}
+		\end{cases}
+	\end{align*}
+
+	\paragraph{}
+	It is the expansion in which the $i$-th equation contains the $i$-th operator of every expanded operator.
+
+	For example, $(a = +1, a = -1)$ is the canonical expansion of  $(a = \pm 1)$, but $(a = -1, a = +1)$ is not.
+
+	\paragraph{}
+	Note that a canonical expansion of a layered formula only exists if the number of equation is equal to the number of operators in each stacked operator:
+	if a layered equation expands to four equations but the operators only extend to two operators, the third equation will never verify the property.
+	The proof of existence and uniqueness will therefore suppose that this is the case.
+\end{definition}
+
+
+
+\end{document}
