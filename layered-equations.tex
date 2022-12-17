@@ -92,6 +92,8 @@ These two definitions of compressed formula expansion need to coexist, as the fo
 
 \section{Definitions}
 
+\subsection{Stacked operators}
+
 \begin{definition}[Stacked operator]
 	An operator that expands to multiple operators.
 	\paragraph{}
@@ -126,6 +128,8 @@ These two definitions of compressed formula expansion need to coexist, as the fo
 	(We thus have ${}^\text{E}{\stackop} \fc = \fc$ for any family of operators $\fc$.)
 \end{definition}
 
+\subsection{Layered formul\ae}
+
 \begin{definition}[Layered formula]
 	A formula in which appears one or more \emph{stacked operators}.
 \end{definition}
@@ -143,7 +147,7 @@ These two definitions of compressed formula expansion need to coexist, as the fo
 	An  \emph{expansion of $L$} is a family of expanded formula $\left( \mathcal E_i \right)_{i\in I} $ such that
 
 	\begin{itemize}
-		\item $\bigwedge_{i\in I} \mathcal{E}_i &\iff L$ 
+		\item $\bigwedge_{i\in I} \mathcal{E}_i \iff L$ 
 		\item $\forall i\in I, \forall k\in \llbracket 1, \#L\rrbracket, \begin{cases}
 				(\chars \mathcal{E}_i)_k \in c_k &\text{if $c_k$ is a stacked operator} \\
 				(\chars \mathcal{E}_i)_k \equiv c_k &\text{otherwise}
@@ -177,7 +181,7 @@ These two definitions of compressed formula expansion need to coexist, as the fo
 	The \emph{relevance} property is defined by a universal quantification over $I$, the set of indices of the expansion.
 	The set of indices of the expansion $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is $\sigma(I) = I$, as $\sigma$ is a bijection from $I$ to $I$.
 
-	Therefore, as  $(\mathcal{E}_i)_{i\in I}$ is \emph{relevant} by definition, $(\mathcal{E}_{\sigma(i)}_{i\in I}$ is \emph{relevant} too.
+	Therefore, as  $(\mathcal{E}_i)_{i\in I}$ is \emph{relevant} by definition, $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is \emph{relevant} too.
 
 	\paragraph{Conclusion}
 	$(\mathcal{E}_{\sigma(i)})_{i\in I}$ is both \emph{relevant}  and \emph{true}, thus $(\mathcal{E}_{\sigma(i)})_{i\in I}$ is an expansion of $L$
